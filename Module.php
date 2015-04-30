@@ -2,13 +2,28 @@
 
 namespace EventLogger;
 
+use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+
 /**
  * 
  *
  * @author Chris Yawman <chris.yawman@neustar.biz>
  */
-class Module implements AutoloaderProviderInterface, ConfigProviderInterface
+class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
+
+    public function onBootstrap(MvcEvent $e)
+    {
+        $eventManager = $e->getApplication()->getEventManager();
+        $moduleRouteListener = new ModuleRouteListener();
+        $moduleRouteListener->attach($eventManager);
+
+        $application = $e->getTarget();
+        $serviceManager = $application->getServiceManager();
+        $eventManager->attachAggregate($serviceManager->get('EventLogger\Log\Listener\ListenerAggregate'));
+    }
 
     /**
      * 
