@@ -1,0 +1,27 @@
+{
+    "name": "cyawman/event-logger",
+    "description": "A ZF2 Module for Logging using events",
+    "require": {
+        "php": ">=5.3.23",
+        "zendframework/zend-servicemanager": "~2.3",
+        "zendframework/zend-log": "~2.3",
+        "zendframework/zend-eventmanager": "~2.3",
+        "zendframework/zend-mvc": "~2.3",
+        "zendframework/zend-loader": "~2.3",
+        "zendframework/zend-modulemanager": "~2.3"
+    },
+    "require-dev" : {
+        "phpunit/phpunit" : ">=3.7,<4",
+        "pdepend/pdepend" : "2.*",
+        "phpmd/phpmd" : "2.*",
+        "squizlabs/php_codesniffer" : "1.4.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "EventLogger": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
