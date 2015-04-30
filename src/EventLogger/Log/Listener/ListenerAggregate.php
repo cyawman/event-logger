@@ -32,7 +32,7 @@ class ListenerAggregate extends AbstractListenerAggregate
      */
     public function attach(EventManagerInterface $events)
     {
-        $this->listeners[] = $events->getSharedManager()->attach('*', 'log', array($this->serviceManager->get('Application\Log\Listener\AppListener'), 'log'));
-        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this->serviceManager->get('Application\Log\Listener\DispatchErrorListener'), 'log'), -200);
+        $this->listeners[] = $events->getSharedManager()->attach('*', 'log', array($this->serviceManager->get('EventLogger\Log\Listener\AppListener'), 'log'));
+        $this->listeners[] = $events->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this->serviceManager->get('EventLogger\Log\Listener\DispatchErrorListener'), 'log'), -200);
     }
 }

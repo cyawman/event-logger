@@ -29,8 +29,8 @@ class ListenerAggregateTest extends PHPUnit_Framework_TestCase
         $mockListener = $this->getMock('EventLogger\Log\Listener\LogListener');
 
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('Application\Log\Listener\AppListener', $mockListener);
-        $serviceManager->setService('Application\Log\Listener\DispatchErrorListener', $mockListener);
+        $serviceManager->setService('EventLogger\Log\Listener\AppListener', $mockListener);
+        $serviceManager->setService('EventLogger\Log\Listener\DispatchErrorListener', $mockListener);
 
         $eventManager = new EventManager();
         $eventManager->setSharedManager(new SharedEventManager());
